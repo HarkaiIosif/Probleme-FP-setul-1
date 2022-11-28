@@ -200,11 +200,12 @@ namespace Probleme_FP_setul_1
         private static void S1()
         {
             Console.WriteLine("Introduceti valorile a si b");
-            int a, b;
+            int  b;
+            double a;
             string line = Console.ReadLine();
             char[] separator = new char[] { ' ', ',', ';' };
             string[] t = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            a = int.Parse(t[0]);
+            a = double.Parse(t[0]);
             b = int.Parse(t[1]);
             double d=-b/a;
 
@@ -225,18 +226,18 @@ namespace Probleme_FP_setul_1
             a = int.Parse(t[0]);
             b = int.Parse(t[1]);
             c = int.Parse(t[2]);
-            d = b * b - 4 * a * c;
+            d = (b * b) - (4 * a * c);
 
             if (d > 0)
             {
                 d = Math.Sqrt(d);
-                x1 = (-1 * b + d) / 2 * a;
-                x2 = (-1 * b - d) / 2 * a;
+                x1 = ((-1 * b) + d) / (2 * a);
+                x2 = ((-1 * b) - d) / (2 * a);
                 Console.WriteLine($"Radacinile sunt {x1} si {x2}");
             }
             else if (d == 0)
             {
-                x1 = (-1 * b) / 2 * a;
+                x1 = (-1 * b) / (2 * a);
                 Console.WriteLine($"Radacinile au aceeasi valoare si sunt egale cu {x1}");
             }
             else
@@ -307,8 +308,8 @@ namespace Probleme_FP_setul_1
             a = int.Parse(t[0]);
             b = int.Parse(t[1]);
             c = int.Parse(t[2]);
-            if (a + b > c && a + c > b && b + c > a) Console.WriteLine($" Numerele {a},{b} si {c} pot fi laturile unui triunghi");
-            else Console.WriteLine($" Numerele {a},{b} si {c} nu pot fi laturile unui triunghi");
+            if (a + b > c && a + c > b && b + c > a) Console.WriteLine($"Numerele {a},{b} si {c} pot fi laturile unui triunghi");
+            else Console.WriteLine($"Numerele {a},{b} si {c} nu pot fi laturile unui triunghi");
             Console.ReadKey();
 
         }
@@ -355,8 +356,10 @@ namespace Probleme_FP_setul_1
         {
             Console.WriteLine("Introduceti numarul n");
             int n = int.Parse(Console.ReadLine());
-            for (int d = 1; d <= n / 2; d++) if (n % d == 0) Console.WriteLine(d + " ");
-            Console.WriteLine(n);
+            Console.Write($"Dovizorii numarului {n} sunt :");
+            for (int d = 1; d <= n / 2; d++) if (n % d == 0) Console.Write(d + " ");
+            Console.Write(n+" ");
+            Console.WriteLine();
             Console.ReadKey();
         }
         /// <summary>
@@ -384,9 +387,10 @@ namespace Probleme_FP_setul_1
             int n = int.Parse(Console.ReadLine());
             while (n > 0)
             {
-                Console.WriteLine(n % 10);
+                Console.Write(n % 10);
                 n = n / 10;
             }
+            Console.WriteLine();
             Console.ReadKey();
         }
         /// <summary>
@@ -613,6 +617,7 @@ namespace Probleme_FP_setul_1
                 if (p != 0) Console.Write(d + "^" + p + "x");
                 d++;
             }
+            Console.WriteLine();
             Console.ReadKey();
         }
         /// <summary>
@@ -643,7 +648,7 @@ namespace Probleme_FP_setul_1
             }
             while (n != 0)
             {
-            if (n % 10 != c1 || n % 10 != c2) ok = false;
+            if (n % 10 != c1 && n % 10 != c2) ok = false;
             n = n / 10;
             }
             if (ok) Console.WriteLine($"Numarul {c} este format din 2 cifre care se repeta");
@@ -661,20 +666,21 @@ namespace Probleme_FP_setul_1
             string line = Console.ReadLine();
             char[] separator = new char[] { ' ', ',', ';' };
             string[] t = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            n = int.Parse(t[0]);
-            m = int.Parse(t[1]);
-            intreg = n / m;
-            fractionar = n % m;
+            m = int.Parse(t[0]);
+            n = int.Parse(t[1]);
+            intreg = m / n;
+            fractionar = m % n;
             Console.Write(intreg);
+            Console.Write(".");
             List<int> cifre = new List<int>();
             List<int> resturi = new List<int>();
             resturi.Add(intreg);
             bool periodic = false;
             do
             {
-                cifra = fractionar * 10 / n;
+                cifra = (fractionar * 10) / n;
                 cifre.Add(cifra);
-                rest = fractionar * 10 % n;
+                rest = (fractionar * 10) % n;
                 if (!resturi.Contains(rest)) resturi.Add(rest);
                 else
                 {
@@ -697,12 +703,13 @@ namespace Probleme_FP_setul_1
                 {
                     if (resturi[i] == rest)
                     {
-                        Console.Write(".(");
+                        Console.Write("(");
                     }
                     Console.Write(cifre[i]);
                 }
                 Console.WriteLine(")");
             }
+            Console.WriteLine();
         }
         /// <summary>
         /// Ghiciti un numar intre 1 si 1024 prin intrebari de forma "numarul este mai mare sau egal decat x?". 
